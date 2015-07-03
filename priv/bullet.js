@@ -327,6 +327,18 @@
 				return false;
 			}
 		};
+		this.send_volatile = function(data){
+			if (transport){
+				if (transport.bufferedAmount === undefined || transport.bufferedAmount === 0) {
+					var ret = transport.send(data);
+					return (ret === undefined) || ret;
+				} else{
+					return true;
+				}
+			} else{
+				return false;
+			}
+		};
 		this.close = function(){
 			readyState = CLOSING;
 			if (transport){
